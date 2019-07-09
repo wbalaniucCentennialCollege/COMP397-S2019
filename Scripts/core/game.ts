@@ -6,9 +6,21 @@
     let helloLabel:objects.Label;
     let clickableButton:objects.Button;
 
+    let assetManager:createjs.LoadQueue;
+    let assetManifest: any[];
+
+    assetManifest = [
+        {id: "clickMeButton", src:"./Assets/ClickMeButton.png"}
+    ];
+
     function Init():void {
         console.log("Initialization start");
-        Start();
+
+        assetManager = new createjs.LoadQueue();    // Creates the container used for the queue
+        assetManager.installPlugin(createjs.Sound); // Necessary to use sound in our game
+        assetManager.loadManifest(assetManifest);   // Loads the manifest defined above
+        assetManager.on("complete", Start, this);
+        // Start();
     }
 
     function Start() {
@@ -29,18 +41,17 @@
 
     function clickableButtonMouseClick():void {
         helloLabel.text = "Clicked";
-        console.log("AHHHH!");
     }
 
     function Main() {
         console.log("Game Start...");
 
         // Label Initialization
-        helloLabel = new objects.Label("Hello World", "40px", "Consolas", "#000000", 320, 240, true);
+        helloLabel = new objects.Label("Hi World", "40px", "Consolas", "#000000", 320, 240, true);
         stage.addChild(helloLabel);
 
         // Button Initialization
-        clickableButton = new objects.Button("./Assets/ClickMeButton.png", 320, 340);
+        clickableButton = new objects.Button(assetManager, "clickMeButton", 320, 340);
 
         clickableButton.regX = 95;
         clickableButton.regY = 24.5;

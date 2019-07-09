@@ -2,8 +2,8 @@ module objects {
     export class Button extends createjs.Bitmap {
         // Variables
         // Constructor
-        constructor(imagePath:string, x:number = 0, y:number = 0) {
-            super(imagePath);
+        constructor(assetManager: createjs.LoadQueue, imageString:string, x:number = 0, y:number = 0) {
+            super(assetManager.getResult(imageString)); // Actual loaded object is of type BLOB
 
             this.x = x;
             this.y = y;
