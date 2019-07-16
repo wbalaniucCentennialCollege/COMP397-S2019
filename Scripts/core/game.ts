@@ -1,3 +1,4 @@
+/// <reference path="_references.ts"/>
 (function() {
 
     // Global Game Variables
@@ -8,6 +9,10 @@
 
     let assetManager:createjs.LoadQueue;
     let assetManifest: any[];
+
+    // Create variables that store current scene information
+    let currentScene:objects.Scene;
+    let currentState:number;
 
     assetManifest = [
         {id: "startButton", src:"./Assets/StartButton.png"},
@@ -22,6 +27,7 @@
         assetManager.installPlugin(createjs.Sound); // Necessary to use sound in our game
         assetManager.loadManifest(assetManifest);   // Loads the manifest defined above
         assetManager.on("complete", Start, this);
+        
         // Start();
     }
 
@@ -35,44 +41,38 @@
         createjs.Ticker.on("tick", Update);
         
         objects.Game.currentScene = config.Scene.START;
+        currentState = config.Scene.START;  // Default State
         Main();
     }
 
     function Update() {
+        if(currentState != objects.Game.currentScene) {
+            console.log(objects.Game.currentScene);
+            Main();
+        }
+
+        currentScene.Update();
+
         stage.update();
     }
 
     function Main() {
         console.log("Game Start...");
-
+        // Define a Finite State Machine
         switch(objects.Game.currentScene) {
             case config.Scene.START:
-
+            stage.removeAllChildren();
+            currentScene = new scenes.StartScene(assetManager);
+            stage.addChild(currentScene);
             break;
             case config.Scene.GAME:
-
+            console.log("Game State");
             break;
             case config.Scene.OVER:
-
+            console.log("Game Over State");
             break;
         }
 
-        // Define a Finite State Machine
-
-        /*
-        // Label Initialization
-        helloLabel = new objects.Label("Hi World", "40px", "Consolas", "#000000", 320, 240, true);
-        stage.addChild(helloLabel);
-
-        // Button Initialization
-        clickableButton = new objects.Button(assetManager, "clickMeButton", 320, 340);
-
-        clickableButton.regX = 95;
-        clickableButton.regY = 24.5;
-        
-        clickableButton.on("click", clickableButtonMouseClick);
-        stage.addChild(clickableButton);
-        */
     }
 
     window.onload = Init;

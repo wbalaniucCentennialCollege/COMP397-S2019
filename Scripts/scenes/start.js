@@ -17,12 +17,15 @@ var scenes;
         __extends(StartScene, _super);
         // Constructor
         function StartScene(assetManager) {
-            return _super.call(this, assetManager) || this;
+            var _this = _super.call(this, assetManager) || this;
+            _this.Start();
+            return _this;
         }
         // Methods
         StartScene.prototype.Start = function () {
             this.welcomeLabel = new objects.Label("Welcome!", "60px", "Consolas", "#000000", 320, 240, true);
             this.startButton = new objects.Button(this.assetManager, "startButton", 320, 300);
+            this.Main();
         };
         StartScene.prototype.Update = function () { };
         StartScene.prototype.startButtonClick = function () {
