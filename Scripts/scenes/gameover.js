@@ -13,31 +13,31 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var StartScene = /** @class */ (function (_super) {
-        __extends(StartScene, _super);
-        // Constructor
-        function StartScene(assetManager) {
+    var GameOverScene = /** @class */ (function (_super) {
+        __extends(GameOverScene, _super);
+        // Constructors
+        function GameOverScene(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this.Start();
             return _this;
         }
         // Methods
-        StartScene.prototype.Start = function () {
-            this.welcomeLabel = new objects.Label("Welcome!", "60px", "Consolas", "#000000", 320, 240, true);
-            this.startButton = new objects.Button(this.assetManager, "startButton", 220, 300);
+        GameOverScene.prototype.Start = function () {
+            this.gameOverLabel = new objects.Label("Game Over", "40px", "Consolas", "#000000", 320, 240, true);
+            this.backButton = new objects.Button(this.assetManager, "backButton", 320, 340);
             this.Main();
         };
-        StartScene.prototype.Update = function () { };
-        StartScene.prototype.startButtonClick = function () {
+        GameOverScene.prototype.Update = function () { };
+        GameOverScene.prototype.backButtonClick = function () {
             objects.Game.currentScene = config.Scene.GAME;
         };
-        StartScene.prototype.Main = function () {
-            this.addChild(this.welcomeLabel);
-            this.addChild(this.startButton);
-            this.startButton.on("click", this.startButtonClick);
+        GameOverScene.prototype.Main = function () {
+            this.addChild(this.gameOverLabel);
+            this.addChild(this.backButton);
+            this.backButton.on("click", this.backButtonClick);
         };
-        return StartScene;
+        return GameOverScene;
     }(objects.Scene));
-    scenes.StartScene = StartScene;
+    scenes.GameOverScene = GameOverScene;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=start.js.map
+//# sourceMappingURL=gameover.js.map

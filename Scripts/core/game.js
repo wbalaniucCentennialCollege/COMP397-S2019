@@ -13,7 +13,8 @@
     assetManifest = [
         { id: "startButton", src: "./Assets/StartButton.png" },
         { id: "nextButton", src: "./Assets/NextButton.png" },
-        { id: "backButton", src: "./Assets/QuitButton.png" }
+        { id: "quitButton", src: "./Assets/QuitButton.png" },
+        { id: "backButton", src: "./Assets/BackButton.png" }
     ];
     function Init() {
         console.log("Initialization start");
@@ -43,7 +44,7 @@
         stage.update();
     }
     function Main() {
-        console.log("Game Start...");
+        // console.log("Game Start...");
         // Define a Finite State Machine
         switch (objects.Game.currentScene) {
             case config.Scene.START:
@@ -52,12 +53,17 @@
                 stage.addChild(currentScene);
                 break;
             case config.Scene.GAME:
-                console.log("Game State");
+                stage.removeAllChildren();
+                currentScene = new scenes.PlayScene(assetManager);
+                stage.addChild(currentScene);
                 break;
             case config.Scene.OVER:
-                console.log("Game Over State");
+                stage.removeAllChildren();
+                currentScene = new scenes.GameOverScene(assetManager);
+                stage.addChild(currentScene);
                 break;
         }
+        currentState = objects.Game.currentScene;
     }
     window.onload = Init;
 })();
