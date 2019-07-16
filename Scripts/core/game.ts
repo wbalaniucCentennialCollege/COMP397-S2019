@@ -18,7 +18,9 @@
         {id: "startButton", src:"./Assets/StartButton.png"},
         {id: "nextButton", src:"./Assets/NextButton.png"},
         {id: "quitButton", src:"./Assets/QuitButton.png"},
-        {id: "backButton", src:"./Assets/BackButton.png"}
+        {id: "backButton", src:"./Assets/BackButton.png"},
+        {id: "background", src:"./Assets/SeamlessBG.png"},
+        {id: "player", src:"./Assets/Spaceship.png"}
     ];
 
     function Init():void {
@@ -41,6 +43,7 @@
         createjs.Ticker.framerate = 60; //  60 FPS (Frames per second)
         createjs.Ticker.on("tick", Update);
         
+        objects.Game.stage = stage;
         objects.Game.currentScene = config.Scene.START;
         currentState = config.Scene.START;  // Default State
         Main();
