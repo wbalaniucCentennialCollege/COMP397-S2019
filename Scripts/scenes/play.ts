@@ -27,9 +27,7 @@ module scenes {
             }
 
             this.scoreBoard = new managers.ScoreBoard;
-            //
-            // ADD GLOBAL REFERENCE TO THE SCOREBOARD HERE
-            //
+            objects.Game.scoreBoard = this.scoreBoard;
 
             this.backgroundMusic = createjs.Sound.play("play_music");
             this.backgroundMusic.loop = -1; // Loop forever

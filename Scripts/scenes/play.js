@@ -32,9 +32,7 @@ var scenes;
                 this.enemies[i] = new objects.Enemy(this.assetManager);
             }
             this.scoreBoard = new managers.ScoreBoard;
-            //
-            // ADD GLOBAL REFERENCE TO THE SCOREBOARD HERE
-            //
+            objects.Game.scoreBoard = this.scoreBoard;
             this.backgroundMusic = createjs.Sound.play("play_music");
             this.backgroundMusic.loop = -1; // Loop forever
             this.backgroundMusic.volume = 0.3;

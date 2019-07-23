@@ -14,13 +14,17 @@ var managers;
                     switch (object2.name) {
                         case "enemy":
                             createjs.Sound.play("explode");
+                            // Increase my score value
+                            objects.Game.scoreBoard.Score += 50;
                             break;
                     }
                     object2.isColliding = true;
+                    return true;
                 }
             }
             else {
                 object2.isColliding = false;
+                return false;
             }
         };
         return Collision;
