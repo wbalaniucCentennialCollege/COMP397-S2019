@@ -20,7 +20,8 @@
         {id: "quitButton", src:"./Assets/QuitButton.png"},
         {id: "backButton", src:"./Assets/BackButton.png"},
         {id: "background", src:"./Assets/SeamlessBG.png"},
-        {id: "player", src:"./Assets/Spaceship.png"}
+        {id: "player", src:"./Assets/Spaceship.png"},
+        {id: "enemy", src:"./Assets/Enemy.png"}
     ];
 
     function Init():void {

@@ -13,36 +13,36 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Background = /** @class */ (function (_super) {
-        __extends(Background, _super);
+    var Enemy = /** @class */ (function (_super) {
+        __extends(Enemy, _super);
+        // Variables
         // Constructor
-        function Background(assetManager) {
-            var _this = _super.call(this, assetManager.getResult("background")) || this;
+        function Enemy(assetManager) {
+            var _this = _super.call(this, assetManager, "enemy") || this;
             _this.Start();
             return _this;
         }
         // Methods
-        Background.prototype.Start = function () {
-            this.speedY = 0.25;
-            this.Reset();
+        Enemy.prototype.Start = function () {
+            this.x = 100;
+            this.y = -50;
         };
-        Background.prototype.Update = function () {
+        Enemy.prototype.Update = function () {
             this.Move();
             this.CheckBounds();
         };
-        Background.prototype.Reset = function () {
-            this.y = -1100;
+        Enemy.prototype.Reset = function () { };
+        Enemy.prototype.Move = function () {
+            this.y -= -5;
         };
-        Background.prototype.Move = function () {
-            this.y += this.speedY;
-        };
-        Background.prototype.CheckBounds = function () {
-            if (this.y >= 0) {
-                this.Reset();
+        Enemy.prototype.CheckBounds = function () {
+            // Check the bottom boundary
+            if (this.y >= 800 + this.height) {
+                this.y = -50;
             }
         };
-        return Background;
-    }(createjs.Bitmap));
-    objects.Background = Background;
+        return Enemy;
+    }(objects.GameObject));
+    objects.Enemy = Enemy;
 })(objects || (objects = {}));
-//# sourceMappingURL=background.js.map
+//# sourceMappingURL=enemy.js.map
