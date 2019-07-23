@@ -24,8 +24,8 @@ var objects;
         }
         // Methods
         Enemy.prototype.Start = function () {
-            this.x = 100;
-            this.y = -50;
+            this.x = Math.floor(Math.random() * 500) + 50;
+            this.y = Math.floor(Math.random() * -800) + -50;
         };
         Enemy.prototype.Update = function () {
             this.Move();
