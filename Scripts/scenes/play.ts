@@ -33,6 +33,7 @@ module scenes {
 
             this.enemies.forEach(enemy => {
                 enemy.Update();
+                managers.Collision.Check(this.player, enemy);
             });
         }
 
