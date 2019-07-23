@@ -23,7 +23,15 @@ module objects {
 
         public Move():void {
             // We need a reference to the stage in order to get mouse position
-            this.x = objects.Game.stage.mouseX;
+            // this.x = objects.Game.stage.mouseX;
+
+            // Keyboard controls
+            if(objects.Game.keyboardManager.moveLeft) {
+                this.x -= 5;
+            }
+            if(objects.Game.keyboardManager.moveRight) {
+                this.x += 5;
+            }
         }
 
         public CheckBounds(): void {

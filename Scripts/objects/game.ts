@@ -4,5 +4,6 @@ module objects {        // Access to globally-required items
         public static assetManager: createjs.LoadQueue;
         public static currentScene: number;
         public static scoreBoard: managers.ScoreBoard;
+        public static keyboardManager: managers.Keyboard;
     }
 }
