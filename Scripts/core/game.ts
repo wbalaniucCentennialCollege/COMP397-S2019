@@ -21,7 +21,9 @@
         {id: "backButton", src:"./Assets/BackButton.png"},
         {id: "background", src:"./Assets/SeamlessBG.png"},
         {id: "player", src:"./Assets/Spaceship.png"},
-        {id: "enemy", src:"./Assets/Enemy.png"}
+        {id: "enemy", src:"./Assets/Enemy.png"},
+        {id: "explode", src:"./Assets/Audio/explode.wav"},
+        {id: "play_music", src:"./Assets/Audio/play_music.ogg"}
     ];
 
     function Init():void {
