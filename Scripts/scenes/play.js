@@ -45,7 +45,12 @@ var scenes;
             // this.enemy.Update();
             this.enemies.forEach(function (enemy) {
                 enemy.Update();
-                managers.Collision.Check(_this.player, enemy);
+                _this.player.isDead = managers.Collision.Check(_this.player, enemy);
+                if (_this.player.isDead) {
+                    // Disable Music
+                    _this.backgroundMusic.stop();
+                    objects.Game.currentScene = config.Scene.OVER;
+                }
             });
         };
         // Button event handlers

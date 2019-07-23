@@ -1,9 +1,11 @@
 module objects {
     export class Player extends objects.GameObject {
         // Variables
+        public isDead:boolean;
         // Constructor
         constructor(assetManager:createjs.LoadQueue) {
             super(assetManager, "player");
+            this.isDead = false;
             this.Start();
         }
         // Methods
