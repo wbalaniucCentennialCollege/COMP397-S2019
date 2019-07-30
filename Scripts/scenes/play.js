@@ -16,23 +16,23 @@ var scenes;
     var PlayScene = /** @class */ (function (_super) {
         __extends(PlayScene, _super);
         // Constructor
-        function PlayScene(assetManager) {
-            var _this = _super.call(this, assetManager) || this;
+        function PlayScene() {
+            var _this = _super.call(this) || this;
             _this.Start();
             return _this;
         }
         // Methods
         PlayScene.prototype.Start = function () {
             // Initialize your variables
-            this.background = new objects.Background(this.assetManager);
-            this.player = new objects.Player(this.assetManager);
+            this.background = new objects.Background();
+            this.player = new objects.Player();
             this.enemies = new Array();
             this.enemyNum = 5; // Number of enemies I want
             for (var i = 0; i < this.enemyNum; i++) {
-                this.enemies[i] = new objects.Enemy(this.assetManager);
+                this.enemies[i] = new objects.Enemy();
             }
             this.scoreBoard = new managers.ScoreBoard;
-            objects.Game.scoreBoard = this.scoreBoard;
+            managers.Game.scoreBoard = this.scoreBoard;
             this.backgroundMusic = createjs.Sound.play("play_music");
             this.backgroundMusic.loop = -1; // Loop forever
             this.backgroundMusic.volume = 0.3;
@@ -49,7 +49,7 @@ var scenes;
                 if (_this.player.isDead) {
                     // Disable Music
                     _this.backgroundMusic.stop();
-                    objects.Game.currentScene = config.Scene.OVER;
+                    managers.Game.currentScene = config.Scene.OVER;
                 }
             });
         };

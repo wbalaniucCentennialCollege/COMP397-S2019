@@ -6,15 +6,15 @@ module scenes {
         private background: objects.Background;
 
         // Constructor
-        constructor(assetManager:createjs.LoadQueue) {
-            super(assetManager);
+        constructor() {
+            super();
             this.Start();
         }
         // Methods
         public Start():void {
             this.welcomeLabel = new objects.Label("PLANET DOOM!", "60px", "Consolas", "#FF0000", 320, 240, true);
-            this.playButton = new objects.Button(this.assetManager, "playButton", 220, 500);
-            this.background = new objects.Background(this.assetManager);
+            this.playButton = new objects.Button("playButton", 220, 500);
+            this.background = new objects.Background();
             this.Main();
         }
 
@@ -23,7 +23,7 @@ module scenes {
         }
 
         private playButtonClick():void {
-            objects.Game.currentScene = config.Scene.GAME;
+            managers.Game.currentScene = config.Scene.GAME;
         }
 
         public Main():void {

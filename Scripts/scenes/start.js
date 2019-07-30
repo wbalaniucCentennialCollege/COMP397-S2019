@@ -16,23 +16,23 @@ var scenes;
     var StartScene = /** @class */ (function (_super) {
         __extends(StartScene, _super);
         // Constructor
-        function StartScene(assetManager) {
-            var _this = _super.call(this, assetManager) || this;
+        function StartScene() {
+            var _this = _super.call(this) || this;
             _this.Start();
             return _this;
         }
         // Methods
         StartScene.prototype.Start = function () {
             this.welcomeLabel = new objects.Label("PLANET DOOM!", "60px", "Consolas", "#FF0000", 320, 240, true);
-            this.playButton = new objects.Button(this.assetManager, "playButton", 220, 500);
-            this.background = new objects.Background(this.assetManager);
+            this.playButton = new objects.Button("playButton", 220, 500);
+            this.background = new objects.Background();
             this.Main();
         };
         StartScene.prototype.Update = function () {
             // this.background.Update();
         };
         StartScene.prototype.playButtonClick = function () {
-            objects.Game.currentScene = config.Scene.GAME;
+            managers.Game.currentScene = config.Scene.GAME;
         };
         StartScene.prototype.Main = function () {
             this.addChild(this.background);

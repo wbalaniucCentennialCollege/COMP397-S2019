@@ -39,17 +39,18 @@
         stage.enableMouseOver(20); // Frequency of checks. Computationally expensive. Turn on in menus. Turn off in game.
         createjs.Ticker.framerate = 60; //  60 FPS (Frames per second)
         createjs.Ticker.on("tick", Update);
-        objects.Game.stage = stage;
-        objects.Game.currentScene = config.Scene.START;
+        managers.Game.stage = stage;
+        managers.Game.currentScene = config.Scene.START;
         currentState = config.Scene.START; // Default State
         keyboardManager = new managers.Keyboard;
         // GLOBAL REFERENCE TO MY KEYBOARD
-        objects.Game.keyboardManager = keyboardManager;
+        managers.Game.keyboardManager = keyboardManager;
+        managers.Game.assetManager = assetManager;
         Main();
     }
     function Update() {
-        if (currentState != objects.Game.currentScene) {
-            console.log(objects.Game.currentScene);
+        if (currentState != managers.Game.currentScene) {
+            console.log(managers.Game.currentScene);
             Main();
         }
         currentScene.Update();
@@ -58,7 +59,7 @@
     function Main() {
         // console.log("Game Start...");
         // Define a Finite State Machine
-        switch (objects.Game.currentScene) {
+        switch (managers.Game.currentScene) {
             case config.Scene.START:
                 stage.removeAllChildren();
                 currentScene = new scenes.StartScene(assetManager);
@@ -75,7 +76,7 @@
                 stage.addChild(currentScene);
                 break;
         }
-        currentState = objects.Game.currentScene;
+        currentState = managers.Game.currentScene;
     }
     window.onload = Init;
 })();

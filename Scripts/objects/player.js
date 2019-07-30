@@ -16,8 +16,8 @@ var objects;
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
         // Constructor
-        function Player(assetManager) {
-            var _this = _super.call(this, assetManager, "player") || this;
+        function Player() {
+            var _this = _super.call(this, "player") || this;
             _this.isDead = false;
             _this.Start();
             return _this;
@@ -36,10 +36,10 @@ var objects;
             // We need a reference to the stage in order to get mouse position
             // this.x = objects.Game.stage.mouseX;
             // Keyboard controls
-            if (objects.Game.keyboardManager.moveLeft) {
+            if (managers.Game.keyboardManager.moveLeft) {
                 this.x -= 5;
             }
-            if (objects.Game.keyboardManager.moveRight) {
+            if (managers.Game.keyboardManager.moveRight) {
                 this.x += 5;
             }
         };

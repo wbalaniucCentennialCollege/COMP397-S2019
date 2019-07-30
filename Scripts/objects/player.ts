@@ -3,8 +3,8 @@ module objects {
         // Variables
         public isDead:boolean;
         // Constructor
-        constructor(assetManager:createjs.LoadQueue) {
-            super(assetManager, "player");
+        constructor() {
+            super("player");
             this.isDead = false;
             this.Start();
         }
@@ -26,10 +26,10 @@ module objects {
             // this.x = objects.Game.stage.mouseX;
 
             // Keyboard controls
-            if(objects.Game.keyboardManager.moveLeft) {
+            if(managers.Game.keyboardManager.moveLeft) {
                 this.x -= 5;
             }
-            if(objects.Game.keyboardManager.moveRight) {
+            if(managers.Game.keyboardManager.moveRight) {
                 this.x += 5;
             }
         }

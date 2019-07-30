@@ -16,16 +16,16 @@ var scenes;
     var GameOverScene = /** @class */ (function (_super) {
         __extends(GameOverScene, _super);
         // Constructors
-        function GameOverScene(assetManager) {
-            var _this = _super.call(this, assetManager) || this;
+        function GameOverScene() {
+            var _this = _super.call(this) || this;
             _this.Start();
             return _this;
         }
         // Methods
         GameOverScene.prototype.Start = function () {
-            this.background = new objects.Background(this.assetManager);
+            this.background = new objects.Background();
             this.gameOverLabel = new objects.Label("Game Over", "60px", "Consolas", "#FF0000", 320, 240, true);
-            this.restartButton = new objects.Button(this.assetManager, "restartButton", 200, 500);
+            this.restartButton = new objects.Button("restartButton", 200, 500);
             this.scoreBoard = new managers.ScoreBoard();
             this.scoreBoard.highScoreLabel.x = 300;
             this.scoreBoard.highScoreLabel.y = 350;
@@ -36,7 +36,7 @@ var scenes;
             // this.background.Update();
         };
         GameOverScene.prototype.restartButtonClick = function () {
-            objects.Game.currentScene = config.Scene.GAME;
+            managers.Game.currentScene = config.Scene.GAME;
         };
         GameOverScene.prototype.Main = function () {
             this.addChild(this.background);

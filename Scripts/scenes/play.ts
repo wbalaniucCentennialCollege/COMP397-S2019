@@ -9,25 +9,25 @@ module scenes {
 
         private backgroundMusic: createjs.AbstractSoundInstance;
         // Constructor
-        constructor(assetManager:createjs.LoadQueue) {
-            super(assetManager);
+        constructor() {
+            super();
 
             this.Start();
         }
         // Methods
         public Start(): void {
             // Initialize your variables
-            this.background = new objects.Background(this.assetManager);
-            this.player = new objects.Player(this.assetManager);
+            this.background = new objects.Background();
+            this.player = new objects.Player();
 
             this.enemies = new Array<objects.Enemy>();
             this.enemyNum = 5; // Number of enemies I want
             for (let i = 0; i < this.enemyNum; i++) {
-                this.enemies[i] = new objects.Enemy(this.assetManager);
+                this.enemies[i] = new objects.Enemy();
             }
 
             this.scoreBoard = new managers.ScoreBoard;
-            objects.Game.scoreBoard = this.scoreBoard;
+            managers.Game.scoreBoard = this.scoreBoard;
 
             this.backgroundMusic = createjs.Sound.play("play_music");
             this.backgroundMusic.loop = -1; // Loop forever
@@ -48,7 +48,7 @@ module scenes {
                 if(this.player.isDead) {
                     // Disable Music
                     this.backgroundMusic.stop();
-                    objects.Game.currentScene = config.Scene.OVER;
+                    managers.Game.currentScene = config.Scene.OVER;
                 }
             });
         }
