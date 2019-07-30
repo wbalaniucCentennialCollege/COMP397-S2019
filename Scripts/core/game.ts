@@ -21,6 +21,8 @@
         {id: "nextButton", src:"./Assets/NextButton.png"},
         {id: "quitButton", src:"./Assets/QuitButton.png"},
         {id: "backButton", src:"./Assets/BackButton.png"},
+        {id: "playButton", src:"./Assets/PlayButton.png"},
+        {id: "restartButton", src:"./Assets/RestartButton.png"},
         {id: "background", src:"./Assets/SeamlessBG.png"},
         {id: "player", src:"./Assets/Spaceship.png"},
         {id: "enemy", src:"./Assets/Enemy.png"},

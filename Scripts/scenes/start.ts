@@ -2,7 +2,8 @@ module scenes {
     export class StartScene extends objects.Scene {
         // Variables
         private welcomeLabel: objects.Label;
-        private startButton: objects.Button;
+        private playButton: objects.Button;
+        private background: objects.Background;
 
         // Constructor
         constructor(assetManager:createjs.LoadQueue) {
@@ -11,21 +12,27 @@ module scenes {
         }
         // Methods
         public Start():void {
-            this.welcomeLabel = new objects.Label("Welcome!", "60px", "Consolas", "#000000", 320, 240, true);
-            this.startButton = new objects.Button(this.assetManager, "startButton", 220, 300);
+            this.welcomeLabel = new objects.Label("PLANET DOOM!", "60px", "Consolas", "#FF0000", 320, 240, true);
+            this.playButton = new objects.Button(this.assetManager, "playButton", 220, 500);
+            this.background = new objects.Background(this.assetManager);
             this.Main();
         }
 
-        public Update():void {}
+        public Update():void {
+            // this.background.Update();
+        }
 
-        private startButtonClick():void {
+        private playButtonClick():void {
             objects.Game.currentScene = config.Scene.GAME;
         }
 
         public Main():void {
+            this.addChild(this.background);
             this.addChild(this.welcomeLabel);
-            this.addChild(this.startButton);
-            this.startButton.on("click", this.startButtonClick);
+            this.addChild(this.playButton);
+
+            // Setup event handler for buttons
+            this.playButton.on("click", this.playButtonClick);
         }
     }
 }

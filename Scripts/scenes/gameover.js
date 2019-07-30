@@ -23,18 +23,23 @@ var scenes;
         }
         // Methods
         GameOverScene.prototype.Start = function () {
-            this.gameOverLabel = new objects.Label("Game Over", "40px", "Consolas", "#000000", 320, 240, true);
-            this.backButton = new objects.Button(this.assetManager, "backButton", 320, 340);
+            this.background = new objects.Background(this.assetManager);
+            this.gameOverLabel = new objects.Label("Game Over", "60px", "Consolas", "#FF0000", 320, 240, true);
+            this.restartButton = new objects.Button(this.assetManager, "restartButton", 220, 500);
             this.Main();
         };
-        GameOverScene.prototype.Update = function () { };
-        GameOverScene.prototype.backButtonClick = function () {
+        GameOverScene.prototype.Update = function () {
+            // this.background.Update();
+        };
+        GameOverScene.prototype.restartButtonClick = function () {
             objects.Game.currentScene = config.Scene.GAME;
         };
         GameOverScene.prototype.Main = function () {
+            this.addChild(this.background);
             this.addChild(this.gameOverLabel);
-            this.addChild(this.backButton);
-            this.backButton.on("click", this.backButtonClick);
+            this.addChild(this.restartButton);
+            // Setup event handlers
+            this.restartButton.on("click", this.restartButtonClick);
         };
         return GameOverScene;
     }(objects.Scene));

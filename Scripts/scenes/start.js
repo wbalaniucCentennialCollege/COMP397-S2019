@@ -23,18 +23,23 @@ var scenes;
         }
         // Methods
         StartScene.prototype.Start = function () {
-            this.welcomeLabel = new objects.Label("Welcome!", "60px", "Consolas", "#000000", 320, 240, true);
-            this.startButton = new objects.Button(this.assetManager, "startButton", 220, 300);
+            this.welcomeLabel = new objects.Label("PLANET DOOM!", "60px", "Consolas", "#FF0000", 320, 240, true);
+            this.playButton = new objects.Button(this.assetManager, "playButton", 220, 500);
+            this.background = new objects.Background(this.assetManager);
             this.Main();
         };
-        StartScene.prototype.Update = function () { };
-        StartScene.prototype.startButtonClick = function () {
+        StartScene.prototype.Update = function () {
+            // this.background.Update();
+        };
+        StartScene.prototype.playButtonClick = function () {
             objects.Game.currentScene = config.Scene.GAME;
         };
         StartScene.prototype.Main = function () {
+            this.addChild(this.background);
             this.addChild(this.welcomeLabel);
-            this.addChild(this.startButton);
-            this.startButton.on("click", this.startButtonClick);
+            this.addChild(this.playButton);
+            // Setup event handler for buttons
+            this.playButton.on("click", this.playButtonClick);
         };
         return StartScene;
     }(objects.Scene));
