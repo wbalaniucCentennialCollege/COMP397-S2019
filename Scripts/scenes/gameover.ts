@@ -4,6 +4,7 @@ module scenes {
         private gameOverLabel: objects.Label;
         private restartButton: objects.Button;
         private background: objects.Background;
+        private scoreBoard: managers.ScoreBoard;
 
         // Constructors
         constructor(assetManager: createjs.LoadQueue) {
@@ -15,7 +16,11 @@ module scenes {
         public Start():void {
             this.background = new objects.Background(this.assetManager);
             this.gameOverLabel = new objects.Label("Game Over", "60px", "Consolas", "#FF0000", 320, 240, true);
-            this.restartButton = new objects.Button(this.assetManager, "restartButton", 220, 500);
+            this.restartButton = new objects.Button(this.assetManager, "restartButton", 200, 500);
+            this.scoreBoard = new managers.ScoreBoard();
+            this.scoreBoard.highScoreLabel.x = 300;
+            this.scoreBoard.highScoreLabel.y = 350;
+            this.scoreBoard.highScoreLabel.setIsCentered(true);
 
             this.Main();
         }
@@ -32,6 +37,7 @@ module scenes {
             this.addChild(this.background);
             this.addChild(this.gameOverLabel);
             this.addChild(this.restartButton);
+            this.addChild(this.scoreBoard.highScoreLabel);
 
             // Setup event handlers
             this.restartButton.on("click", this.restartButtonClick);

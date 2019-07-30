@@ -14,6 +14,11 @@ module managers {
                             createjs.Sound.play("explode");
                             // Increase my score value
                             objects.Game.scoreBoard.Score += 50;
+                            if(objects.Game.scoreBoard.HighScore <= objects.Game.scoreBoard.Score) {
+                                objects.Game.scoreBoard.HighScore = objects.Game.scoreBoard.Score;
+                                objects.Game.highscore = objects.Game.scoreBoard.HighScore;
+                            }
+
                         break;
                     }
 

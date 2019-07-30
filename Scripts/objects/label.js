@@ -32,6 +32,17 @@ var objects;
             _this.y = y;
             return _this;
         }
+        // Methods
+        Label.prototype.setIsCentered = function (isCentered) {
+            if (isCentered) {
+                this.regX = this.getMeasuredWidth() * 0.5;
+                this.regY = this.getMeasuredHeight() * 0.5;
+            }
+            else {
+                this.regX = 0;
+                this.regY = 0;
+            }
+        };
         return Label;
     }(createjs.Text));
     objects.Label = Label;

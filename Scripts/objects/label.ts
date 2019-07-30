@@ -19,6 +19,15 @@ module objects {    // Module = Namespace
         }
 
         // Methods
-
+        public setIsCentered(isCentered: boolean) : void {
+            if(isCentered) {
+                this.regX = this.getMeasuredWidth() * 0.5;
+                this.regY = this.getMeasuredHeight() * 0.5;
+            }
+            else {
+                this.regX = 0;
+                this.regY = 0;
+            }
+        }
     }
 }

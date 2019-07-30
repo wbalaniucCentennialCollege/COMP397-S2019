@@ -35,7 +35,7 @@ module managers {
                     this.moveRight = true;
                 break;
                 case config.Keys.SPACE:
-                    console.log("pew pew");
+                    this.shoot = true;
                 break;
             }
         }
@@ -58,7 +58,7 @@ module managers {
                     this.moveRight = false;
                 break;
                 case config.Keys.SPACE:
-                    console.log("pew pew off!");
+                    this.shoot = false;
                 break;
             }
         }

@@ -5,5 +5,6 @@ module objects {        // Access to globally-required items
         public static currentScene: number;
         public static scoreBoard: managers.ScoreBoard;
         public static keyboardManager: managers.Keyboard;
+        public static highscore: number;
     }
 }
