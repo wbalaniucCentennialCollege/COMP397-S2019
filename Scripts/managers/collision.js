@@ -13,7 +13,6 @@ var managers;
                     // console.log("Collision with " + object2.name);
                     switch (object2.name) {
                         case "enemy":
-                            createjs.Sound.play("explode");
                             // Increase my score value
                             managers.Game.scoreBoard.Score += 50;
                             if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {

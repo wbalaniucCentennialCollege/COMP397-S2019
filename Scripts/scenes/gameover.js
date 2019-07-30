@@ -25,7 +25,7 @@ var scenes;
         GameOverScene.prototype.Start = function () {
             this.background = new objects.Background();
             this.gameOverLabel = new objects.Label("Game Over", "60px", "Consolas", "#FF0000", 320, 240, true);
-            this.restartButton = new objects.Button("RestartButton", 200, 500);
+            this.restartButton = new objects.Button("RestartButton", 300, 500);
             this.scoreBoard = new managers.ScoreBoard();
             this.scoreBoard.highScoreLabel.x = 300;
             this.scoreBoard.highScoreLabel.y = 350;

@@ -41,7 +41,7 @@
             "RestartButton": { "frames": [4] },
             "Explosion": {
                 "frames": [10, 7, 11, 8, 5, 6],
-                "speed": 0.5
+                "speed": 0.1
             },
             "laser": { "frames": [9] },
         },

@@ -18,6 +18,7 @@ var scenes;
         // Constructor
         function PlayScene() {
             var _this = _super.call(this) || this;
+            _this.isExploding = false;
             _this.Start();
             return _this;
         }
@@ -46,12 +47,22 @@ var scenes;
             this.enemies.forEach(function (enemy) {
                 enemy.Update();
                 _this.player.isDead = managers.Collision.Check(_this.player, enemy);
-                if (_this.player.isDead) {
+                if (_this.player.isDead && !_this.isExploding) {
                     // Disable Music
                     _this.backgroundMusic.stop();
-                    managers.Game.currentScene = config.Scene.OVER;
+                    // Create explosion
+                    _this.explosion = new objects.Explosion(_this.player.x, _this.player.y);
+                    _this.explosion.on("animationend", _this.handleExplosion);
+                    _this.addChild(_this.explosion);
+                    _this.isExploding = true;
+                    _this.removeChild(_this.player);
                 }
             });
+        };
+        PlayScene.prototype.handleExplosion = function () {
+            this.stage.removeChild(this.explosion);
+            this.isExploding = false;
+            managers.Game.currentScene = config.Scene.OVER;
         };
         // Button event handlers
         PlayScene.prototype.Main = function () {

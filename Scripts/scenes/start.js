@@ -24,7 +24,7 @@ var scenes;
         // Methods
         StartScene.prototype.Start = function () {
             this.welcomeLabel = new objects.Label("PLANET DOOM!", "60px", "Consolas", "#FF0000", 320, 240, true);
-            this.playButton = new objects.Button("PlayButton", 220, 500);
+            this.playButton = new objects.Button("PlayButton", 300, 500);
             this.background = new objects.Background();
             this.Main();
         };

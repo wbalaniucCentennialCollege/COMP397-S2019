@@ -6,8 +6,10 @@ module scenes {
         private enemies:objects.Enemy[];
         private enemyNum:number;
         private scoreBoard:managers.ScoreBoard;
+        private explosion:objects.Explosion;
 
         private backgroundMusic: createjs.AbstractSoundInstance;
+        private isExploding:boolean = false;
         // Constructor
         constructor() {
             super();
@@ -45,12 +47,24 @@ module scenes {
                 enemy.Update();
                 this.player.isDead = managers.Collision.Check(this.player, enemy);
 
-                if(this.player.isDead) {
+                if(this.player.isDead && !this.isExploding) {
                     // Disable Music
                     this.backgroundMusic.stop();
-                    managers.Game.currentScene = config.Scene.OVER;
+
+                    // Create explosion
+                    this.explosion = new objects.Explosion(this.player.x, this.player.y);
+                    this.explosion.on("animationend", this.handleExplosion);
+                    this.addChild(this.explosion);
+                    this.isExploding = true;
+                    this.removeChild(this.player);
                 }
             });
+        }
+
+        private handleExplosion() : void {
+            this.stage.removeChild(this.explosion);
+            this.isExploding = false;
+            managers.Game.currentScene = config.Scene.OVER;
         }
 
         // Button event handlers
