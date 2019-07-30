@@ -1,9 +1,9 @@
 module objects {
-    export class Button extends createjs.Bitmap {
+    export class Button extends objects.GameObject {
         // Variables
         // Constructor
         constructor(imageString:string, x:number = 0, y:number = 0) {
-            super(managers.Game.assetManager.getResult(imageString)); // Actual loaded object is of type BLOB
+            super(imageString); 
 
             this.x = x;
             this.y = y;

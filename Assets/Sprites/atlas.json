@@ -1,0 +1,43 @@
+{
+
+"images": [
+    "atlas.png"
+],
+
+"framerate": 20,
+"frames": [
+    [0, 0, 190, 49, 0, 0, 0],
+    [190, 0, 190, 49, 0, 0, 0],
+    [380, 0, 75, 60, 0, 0, 0],
+    [455, 0, 41, 61, 0, 0, 0],
+    [0, 49, 190, 49, 0, 0, 0],
+    [190, 49, 38, 32, 0, -13, -16],
+    [228, 49, 38, 32, 0, -13, -16],
+    [266, 49, 35, 32, 0, -14, -16],
+    [301, 49, 35, 32, 0, -14, -16],
+    [336, 49, 17, 32, 0, 0, 0],
+    [353, 49, 19, 19, 0, -22, -22],
+    [372, 60, 34, 31, 0, -15, -16]
+],
+
+"animations": {
+    "PlayButton": { "frames": [0] },
+    "QuitButton": { "frames": [1] },
+    "Enemy": { "frames": [2] },
+    "Spaceship": { "frames": [3] },
+    "RestartButton": { "frames": [4] },
+    "explosion5": { "frames": [5] },
+    "explosion6": { "frames": [6] },
+    "explosion2": { "frames": [7] },
+    "explosion4": { "frames": [8] },
+    "laser": { "frames": [9] },
+    "explosion1": { "frames": [10] },
+    "explosion3": { "frames": [11] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:4fa61896aef953d2a66a28cb6f95e5e0:47f007beabd1d4f5ea83d94366d0016a:cbce6b53f0f49e0bf15173c25c41f876$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

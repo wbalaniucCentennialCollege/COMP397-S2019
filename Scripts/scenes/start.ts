@@ -13,7 +13,7 @@ module scenes {
         // Methods
         public Start():void {
             this.welcomeLabel = new objects.Label("PLANET DOOM!", "60px", "Consolas", "#FF0000", 320, 240, true);
-            this.playButton = new objects.Button("playButton", 220, 500);
+            this.playButton = new objects.Button("PlayButton", 220, 500);
             this.background = new objects.Background();
             this.Main();
         }

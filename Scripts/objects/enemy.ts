@@ -3,7 +3,7 @@ module objects {
         // Variables
         // Constructor
         constructor() {
-            super("enemy");
+            super("Enemy");
             this.Start();
         }
         // Methods

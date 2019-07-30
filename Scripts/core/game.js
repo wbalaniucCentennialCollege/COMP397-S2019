@@ -11,21 +11,49 @@
     var currentScene;
     var currentState;
     var keyboardManager;
+    // Define Spritesheet information
+    var textureAtlasData;
+    var textureAtlas;
+    textureAtlasData = {
+        "images": [
+            "./Assets/Sprites/atlas.png"
+        ],
+        "framerate": 20,
+        "frames": [
+            [0, 0, 190, 49, 0, 0, 0],
+            [190, 0, 190, 49, 0, 0, 0],
+            [380, 0, 75, 60, 0, 0, 0],
+            [455, 0, 41, 61, 0, 0, 0],
+            [0, 49, 190, 49, 0, 0, 0],
+            [190, 49, 38, 32, 0, -13, -16],
+            [228, 49, 38, 32, 0, -13, -16],
+            [266, 49, 35, 32, 0, -14, -16],
+            [301, 49, 35, 32, 0, -14, -16],
+            [336, 49, 17, 32, 0, 0, 0],
+            [353, 49, 19, 19, 0, -22, -22],
+            [372, 60, 34, 31, 0, -15, -16]
+        ],
+        "animations": {
+            "PlayButton": { "frames": [0] },
+            "QuitButton": { "frames": [1] },
+            "Enemy": { "frames": [2] },
+            "Player": { "frames": [3] },
+            "RestartButton": { "frames": [4] },
+            "Explosion": {
+                "frames": [10, 7, 11, 8, 5, 6],
+                "speed": 0.5
+            },
+            "laser": { "frames": [9] },
+        },
+    };
     assetManifest = [
-        { id: "startButton", src: "./Assets/StartButton.png" },
-        { id: "nextButton", src: "./Assets/NextButton.png" },
-        { id: "quitButton", src: "./Assets/QuitButton.png" },
-        { id: "backButton", src: "./Assets/BackButton.png" },
-        { id: "playButton", src: "./Assets/PlayButton.png" },
-        { id: "restartButton", src: "./Assets/RestartButton.png" },
         { id: "background", src: "./Assets/SeamlessBG.png" },
-        { id: "player", src: "./Assets/Spaceship.png" },
-        { id: "enemy", src: "./Assets/Enemy.png" },
         { id: "explode", src: "./Assets/Audio/explode.wav" },
         { id: "play_music", src: "./Assets/Audio/play_music.ogg" }
     ];
     function Init() {
         console.log("Initialization start");
+        textureAtlas = new createjs.SpriteSheet(textureAtlasData);
         assetManager = new createjs.LoadQueue(); // Creates the container used for the queue
         assetManager.installPlugin(createjs.Sound); // Necessary to use sound in our game
         assetManager.loadManifest(assetManifest); // Loads the manifest defined above
@@ -46,6 +74,7 @@
         // GLOBAL REFERENCE TO MY KEYBOARD
         managers.Game.keyboardManager = keyboardManager;
         managers.Game.assetManager = assetManager;
+        managers.Game.textureAtlas = textureAtlas;
         Main();
     }
     function Update() {
@@ -62,17 +91,17 @@
         switch (managers.Game.currentScene) {
             case config.Scene.START:
                 stage.removeAllChildren();
-                currentScene = new scenes.StartScene(assetManager);
+                currentScene = new scenes.StartScene();
                 stage.addChild(currentScene);
                 break;
             case config.Scene.GAME:
                 stage.removeAllChildren();
-                currentScene = new scenes.PlayScene(assetManager);
+                currentScene = new scenes.PlayScene();
                 stage.addChild(currentScene);
                 break;
             case config.Scene.OVER:
                 stage.removeAllChildren();
-                currentScene = new scenes.GameOverScene(assetManager);
+                currentScene = new scenes.GameOverScene();
                 stage.addChild(currentScene);
                 break;
         }
