@@ -52,7 +52,7 @@ module scenes {
                     enemy.Update();
 
                     // Check collisions between player and enemy
-                    managers.Collision.Check(this.player, enemy);
+                    managers.Collision.CheckAABB(this.player, enemy);
                 }
             });
 

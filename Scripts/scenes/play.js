@@ -50,7 +50,7 @@ var scenes;
                 if (!enemy.isDead) {
                     enemy.Update();
                     // Check collisions between player and enemy
-                    managers.Collision.Check(_this.player, enemy);
+                    managers.Collision.CheckAABB(_this.player, enemy);
                 }
             });
             this.laserManager.Lasers.forEach(function (laser) {

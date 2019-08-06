@@ -12,6 +12,14 @@ var managers;
                 this.Lasers[i] = new objects.Laser();
             }
         };
+        Laser.prototype.GetLaser = function () {
+            var laser = this.Lasers[this.CurrentLaser];
+            this.CurrentLaser++;
+            if (managers.Game.laserManager.CurrentLaser > 49) {
+                managers.Game.laserManager.CurrentLaser = 0;
+            }
+            return laser;
+        };
         Laser.prototype.Start = function () {
             this.laserCount = 50;
             this.Lasers = new Array();

@@ -35,19 +35,19 @@ module objects {
                     this.laserSpawn = new math.Vec2(this.x, this.y - this.halfH);
 
                     // IDEAL
-                    // let laser = managers.Game.laserManager.getLaser();
+                    let laser = managers.Game.laserManager.GetLaser();
 
-                    let currentLaser = managers.Game.laserManager.CurrentLaser;
-                    let laser = managers.Game.laserManager.Lasers[currentLaser];
+                    //let currentLaser = managers.Game.laserManager.CurrentLaser;
+                    //let laser = managers.Game.laserManager.Lasers[currentLaser];
 
                     laser.x = this.laserSpawn.x;
                     laser.y = this.laserSpawn.y;
                     
-                    managers.Game.laserManager.CurrentLaser++;
+                    //managers.Game.laserManager.CurrentLaser++;
                     // DON'T DO THIS IN HERE. DO IT IN THE MANAGER
-                    if(managers.Game.laserManager.CurrentLaser > 49) {
-                        managers.Game.laserManager.CurrentLaser = 0;
-                    }
+                    //if(managers.Game.laserManager.CurrentLaser > 49) {
+                        //managers.Game.laserManager.CurrentLaser = 0;
+                    //}
                 }
             }
         }
