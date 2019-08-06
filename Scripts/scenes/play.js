@@ -27,6 +27,8 @@ var scenes;
             // Initialize your variables
             this.background = new objects.Background();
             this.player = new objects.Player();
+            this.laserManager = new managers.Laser();
+            managers.Game.laserManager = this.laserManager;
             this.enemies = new Array();
             this.enemyNum = 5; // Number of enemies I want
             for (var i = 0; i < this.enemyNum; i++) {
@@ -43,21 +45,38 @@ var scenes;
             var _this = this;
             this.background.Update();
             this.player.Update();
-            // this.enemy.Update();
+            this.laserManager.Update();
             this.enemies.forEach(function (enemy) {
-                enemy.Update();
-                _this.player.isDead = managers.Collision.Check(_this.player, enemy);
-                if (_this.player.isDead && !_this.isExploding) {
-                    // Disable Music
-                    _this.backgroundMusic.stop();
-                    // Create explosion
-                    _this.explosion = new objects.Explosion(_this.player.x, _this.player.y);
-                    _this.explosion.on("animationend", _this.handleExplosion);
-                    _this.addChild(_this.explosion);
-                    _this.isExploding = true;
-                    _this.removeChild(_this.player);
+                if (!enemy.isDead) {
+                    enemy.Update();
+                    // Check collisions between player and enemy
+                    managers.Collision.Check(_this.player, enemy);
                 }
             });
+            this.laserManager.Lasers.forEach(function (laser) {
+                _this.enemies.forEach(function (enemy) {
+                    managers.Collision.CheckAABB(laser, enemy);
+                });
+            });
+            // this.enemy.Update();
+            /*
+            this.enemies.forEach(enemy => {
+                enemy.Update();
+                this.player.isDead = managers.Collision.Check(this.player, enemy);
+
+                if(this.player.isDead && !this.isExploding) {
+                    // Disable Music
+                    this.backgroundMusic.stop();
+
+                    // Create explosion
+                    this.explosion = new objects.Explosion(this.player.x, this.player.y);
+                    this.explosion.on("animationend", this.handleExplosion);
+                    this.addChild(this.explosion);
+                    this.isExploding = true;
+                    this.removeChild(this.player);
+                }
+            });
+            */
         };
         PlayScene.prototype.handleExplosion = function () {
             this.stage.removeChild(this.explosion);
@@ -72,6 +91,9 @@ var scenes;
             // this.addChild(this.enemy);
             this.enemies.forEach(function (enemy) {
                 _this.addChild(enemy);
+            });
+            this.laserManager.Lasers.forEach(function (laser) {
+                _this.addChild(laser);
             });
             this.addChild(this.scoreBoard.scoreLabel);
             this.addChild(this.scoreBoard.highScoreLabel);

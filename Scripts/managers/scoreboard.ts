@@ -28,7 +28,7 @@ module managers {
         // Methods
         private Init():void {
             this.scoreLabel = new objects.Label("Score: 9999999", "20px", "Consolas", "#FFFF00", 10, 10, false);
-            this.highScoreLabel = new objects.Label("High Score: ", "20px", "Consolas", "#FFFF00", 450, 10, false);
+            this.highScoreLabel = new objects.Label("High Score: ", "20px", "Consolas", "#FFFF00", 400, 10, false);
 
             this.Score = 0;
             this.HighScore = 0;

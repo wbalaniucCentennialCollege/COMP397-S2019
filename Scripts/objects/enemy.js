@@ -15,10 +15,11 @@ var objects;
 (function (objects) {
     var Enemy = /** @class */ (function (_super) {
         __extends(Enemy, _super);
-        // Variables
         // Constructor
         function Enemy() {
             var _this = _super.call(this, "Enemy") || this;
+            // Variables
+            _this.isDead = false;
             _this.Start();
             return _this;
         }
@@ -31,7 +32,11 @@ var objects;
             this.Move();
             this.CheckBounds();
         };
-        Enemy.prototype.Reset = function () { };
+        Enemy.prototype.Reset = function () {
+            this.isDead = true;
+            this.x = -1000;
+            this.y = -1000;
+        };
         Enemy.prototype.Move = function () {
             this.y -= -5;
         };

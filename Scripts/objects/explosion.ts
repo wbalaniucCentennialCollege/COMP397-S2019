@@ -14,12 +14,21 @@ module objects {
 
             this.scaleX = 2;
             this.scaleY = 2;
+            this.Start();
         }
         // Methods
-        public Start():void {}
+        public Start():void {
+            this.on("animationend", this.animationEnded.bind(this), false);
+        }
         public Update(): void {}
         public Reset(): void {}
         public Move(): void {}
         public CheckBounds(): void {}
+
+        private animationEnded():void {
+            this.alpha = 0;
+            this.off("animationend", this.animationEnded.bind(this), false);
+            managers.Game.currentSceneObject.removeChild(this);
+        }
     }
 }

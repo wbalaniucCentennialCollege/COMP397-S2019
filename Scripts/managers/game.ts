@@ -7,5 +7,7 @@ module managers {        // Access to globally-required items
         public static keyboardManager: managers.Keyboard;
         public static highscore: number;
         public static textureAtlas: createjs.SpriteSheet;
+        public static laserManager: managers.Laser;
+        public static currentSceneObject: objects.Scene;
     }
 }

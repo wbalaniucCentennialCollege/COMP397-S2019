@@ -7,6 +7,7 @@ module scenes {
         private enemyNum:number;
         private scoreBoard:managers.ScoreBoard;
         private explosion:objects.Explosion;
+        private laserManager: managers.Laser;
 
         private backgroundMusic: createjs.AbstractSoundInstance;
         private isExploding:boolean = false;
@@ -21,6 +22,9 @@ module scenes {
             // Initialize your variables
             this.background = new objects.Background();
             this.player = new objects.Player();
+
+            this.laserManager = new managers.Laser();
+            managers.Game.laserManager = this.laserManager;
 
             this.enemies = new Array<objects.Enemy>();
             this.enemyNum = 5; // Number of enemies I want
@@ -41,8 +45,26 @@ module scenes {
         public Update(): void {
             this.background.Update();
             this.player.Update();
-            // this.enemy.Update();
+            this.laserManager.Update();
 
+            this.enemies.forEach(enemy => {
+                if(!enemy.isDead) {
+                    enemy.Update();
+
+                    // Check collisions between player and enemy
+                    managers.Collision.Check(this.player, enemy);
+                }
+            });
+
+            this.laserManager.Lasers.forEach(laser => {
+                this.enemies.forEach(enemy => {
+                    managers.Collision.CheckAABB(laser, enemy);
+                });
+            });
+
+
+            // this.enemy.Update();
+            /*
             this.enemies.forEach(enemy => {
                 enemy.Update();
                 this.player.isDead = managers.Collision.Check(this.player, enemy);
@@ -59,6 +81,7 @@ module scenes {
                     this.removeChild(this.player);
                 }
             });
+            */
         }
 
         private handleExplosion() : void {
@@ -75,6 +98,10 @@ module scenes {
 
             this.enemies.forEach(enemy => {
                 this.addChild(enemy);
+            });
+
+            this.laserManager.Lasers.forEach(laser => {
+                this.addChild(laser);
             });
 
             this.addChild(this.scoreBoard.scoreLabel);

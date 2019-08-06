@@ -74,6 +74,7 @@
         managers.Game.stage = stage;
         managers.Game.currentScene = config.Scene.START;
         currentState = config.Scene.START; // Default State
+        managers.Game.currentSceneObject = currentScene;
         keyboardManager = new managers.Keyboard;
         // GLOBAL REFERENCE TO MY KEYBOARD
         managers.Game.keyboardManager = keyboardManager;
@@ -110,6 +111,7 @@
                 break;
         }
         currentState = managers.Game.currentScene;
+        managers.Game.currentSceneObject = currentScene;
     }
     window.onload = Init;
 })();

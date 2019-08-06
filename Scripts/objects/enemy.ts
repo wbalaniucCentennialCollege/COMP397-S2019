@@ -1,6 +1,7 @@
 module objects {
     export class Enemy extends objects.GameObject {
         // Variables
+        public isDead:boolean = false;
         // Constructor
         constructor() {
             super("Enemy");
@@ -15,7 +16,11 @@ module objects {
             this.Move();
             this.CheckBounds();
         }
-        public Reset():void {}
+        public Reset():void {
+            this.isDead = true;
+            this.x = -1000;
+            this.y = -1000;
+        }
         public Move():void {
             this.y -= -5;
         }

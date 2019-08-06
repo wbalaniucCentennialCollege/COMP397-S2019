@@ -24,14 +24,22 @@ var objects;
             _this.y = y;
             _this.scaleX = 2;
             _this.scaleY = 2;
+            _this.Start();
             return _this;
         }
         // Methods
-        Explosion.prototype.Start = function () { };
+        Explosion.prototype.Start = function () {
+            this.on("animationend", this.animationEnded.bind(this), false);
+        };
         Explosion.prototype.Update = function () { };
         Explosion.prototype.Reset = function () { };
         Explosion.prototype.Move = function () { };
         Explosion.prototype.CheckBounds = function () { };
+        Explosion.prototype.animationEnded = function () {
+            this.alpha = 0;
+            this.off("animationend", this.animationEnded.bind(this), false);
+            managers.Game.currentSceneObject.removeChild(this);
+        };
         return Explosion;
     }(objects.GameObject));
     objects.Explosion = Explosion;
