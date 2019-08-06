@@ -16,7 +16,7 @@
     var textureAtlas;
     textureAtlasData = {
         "images": [
-            "./Assets/Sprites/atlas.png"
+            ""
         ],
         "framerate": 20,
         "frames": [
@@ -47,6 +47,7 @@
         },
     };
     assetManifest = [
+        { id: "textureAtlas", src: "./Assets/Sprites/atlas.png" },
         { id: "background", src: "./Assets/SeamlessBG.png" },
         { id: "explode", src: "./Assets/Audio/explode.wav" },
         { id: "play_music", src: "./Assets/Audio/play_music.ogg" }
@@ -62,6 +63,9 @@
     }
     function Start() {
         console.log("Starting Application...");
+        // Define our spritesheet from the preloader
+        textureAtlasData.images = [assetManager.getResult("textureAtlas")];
+        textureAtlas = new createjs.SpriteSheet(textureAtlasData);
         // Initialize CreateJS
         stage = new createjs.Stage(canvas);
         stage.enableMouseOver(20); // Frequency of checks. Computationally expensive. Turn on in menus. Turn off in game.
